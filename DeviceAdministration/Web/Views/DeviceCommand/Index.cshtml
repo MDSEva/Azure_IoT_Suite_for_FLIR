@@ -29,84 +29,93 @@
         @if (Model.SupportDeviceCommand)
         {
             Html.RenderPartial("_SendCommand", Model.SendCommandModel);
+
+            @*MDS bae 2017.0614 Insert Image*@
+            var countnum = Model.CommandHistory.Count - 1;
+            if (Model.CommandHistory[countnum].Result == "Success")
+            {
+               <fieldset class="command_form">                    
+                    <img class="flir_image" id="flirimage" src='@Model.ImageUrl' alt="Flir Img" />
+               </fieldset>
+            }
         }
 
-        <div class="command_container display_none" id="content">
+            <div class="command_container display_none" id="content">
 
-            <h3>@Strings.CommandHistory</h3>
+                <h3>@Strings.CommandHistory</h3>
 
-            <table id="commandHistory">
-                <thead>
-                    <tr>
-                        <th>@Strings.CommandName</th>
-                        <th>@Strings.CommandResult</th>
-                        <th>@Strings.CommandValuesSent</th>
-                        <th>@Strings.CommandTimeCreated</th>
-                        <th>@Strings.CommandTimeUpdated</th>
-                        @if (canSendCommands)
-                        {
-                            <th></th>
-                        }
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @{
-                        var supportedCommandNames = DeviceDisplayHelper.BuildAvailableCommandNameSet(Model);
-                    }
-                    @foreach (var commandHistoryItem in Model.CommandHistory)
-                    {
+                <table id="commandHistory">
+                    <thead>
                         <tr>
-                            <td>
-                                @commandHistoryItem.Name
-                            </td>
-                            <td>
-                                @{string result = commandHistoryItem.Result;}
-                                @{string errorMessage = commandHistoryItem.ErrorMessage;}
-                                @(Html.Partial("_CommandResult", result ?? Strings.Pending, new ViewDataDictionary {{"ErrorMessage", errorMessage}}))
-                            </td>
-                            <td>
-                                @DynamicValuesHelper.ConvertToJsonString(commandHistoryItem.Parameters)
-                            </td>
-                            <td>
-                                @{ resolvedTime = DynamicValuesHelper.ConvertToDateTime(commandHistoryItem.CreatedTime); }
-                                @Html.DisplayFor(m => resolvedTime)
-                            </td>
-                            <td>
-                                @{ resolvedTime = DynamicValuesHelper.ConvertToDateTime(commandHistoryItem.UpdatedTime); }
-                                @if (resolvedTime.HasValue)
-                                {
-                                    @Html.DisplayFor(m => resolvedTime)
-                                }
-                                else
-                                {
-                                    @Strings.Pending
-                                }
-
-                            </td>
+                            <th>@Strings.CommandName</th>
+                            <th>@Strings.CommandResult</th>
+                            <th>@Strings.CommandValuesSent</th>
+                            <th>@Strings.CommandTimeCreated</th>
+                            <th>@Strings.CommandTimeUpdated</th>
                             @if (canSendCommands)
                             {
-                                <td>
-                                    @{
-                                    string commandName = commandHistoryItem.Name;
-                                    if (!string.IsNullOrWhiteSpace(commandName) && supportedCommandNames.Contains(commandName))
-                                    {
-                                        <button class="button_base resend_command"
-                                                data-command-name="@commandName"
-                                                data-command-deliverytype="@commandHistoryItem.DeliveryType"
-                                                data-command-json="@commandHistoryItem.GetParameterString()">
-                                            @Strings.Resend
-                                        </button>
-                                    }
-                                    }
-                                </td>
+                                <th></th>
                             }
+
                         </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
+                    </thead>
+                    <tbody>
+                        @{
+                            var supportedCommandNames = DeviceDisplayHelper.BuildAvailableCommandNameSet(Model);
+                        }
+                        @foreach (var commandHistoryItem in Model.CommandHistory)
+                    {
+                            <tr>
+                                <td>
+                                    @commandHistoryItem.Name
+                                </td>
+                                <td>
+                                    @{string result = commandHistoryItem.Result;}
+                                    @{string errorMessage = commandHistoryItem.ErrorMessage;}
+                                    @(Html.Partial("_CommandResult", result ?? Strings.Pending, new ViewDataDictionary { { "ErrorMessage", errorMessage } }))
+                                </td>
+                                <td>
+                                    @DynamicValuesHelper.ConvertToJsonString(commandHistoryItem.Parameters)
+                                </td>
+                                <td>
+                                    @{ resolvedTime = DynamicValuesHelper.ConvertToDateTime(commandHistoryItem.CreatedTime); }
+                                    @Html.DisplayFor(m => resolvedTime)
+                                </td>
+                                <td>
+                                    @{ resolvedTime = DynamicValuesHelper.ConvertToDateTime(commandHistoryItem.UpdatedTime); }
+                                    @if (resolvedTime.HasValue)
+                                    {
+                                        @Html.DisplayFor(m => resolvedTime)
+                                    }
+                                    else
+                                    {
+                                        @Strings.Pending
+                                    }
+
+                                </td>
+                                @if (canSendCommands)
+                                {
+                                    <td>
+                                        @{
+                                            string commandName = commandHistoryItem.Name;
+                                            if (!string.IsNullOrWhiteSpace(commandName) && supportedCommandNames.Contains(commandName))
+                                            {
+                                                <button class="button_base resend_command"
+                                                        data-command-name="@commandName"
+                                                        data-command-deliverytype="@commandHistoryItem.DeliveryType"
+                                                        data-command-json="@commandHistoryItem.GetParameterString()">
+                                                    @Strings.Resend
+                                                </button>
+                                            }
+                                        }
+                                    </td>
+                                            }
+                            </tr>
+                                            }
+                    </tbody>
+                </table>
+            </div>
+</div>
 </div>
 
 @section scripts

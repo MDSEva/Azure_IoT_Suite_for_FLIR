@@ -9,7 +9,12 @@ using Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Models.Comman
 using Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Infrastructure.BusinessLogic;
 using Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Web.Models;
 using Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Web.Security;
+
+//MDS bae 2017.0615
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 using Newtonsoft.Json;
+using System.Configuration;
 
 namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Web.Controllers
 {
@@ -17,6 +22,12 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Web.
     [OutputCache(CacheProfile = "NoCacheProfile")]
     public class DeviceCommandController : Controller
     {
+        //MDS bae 2017.0615
+        public static CloudBlobClient blobClient;
+        public const string blobContainerName = "flirimage";
+        public static CloudBlobContainer blobContainer;
+        public string flirimageurl;
+
         private static readonly List<string> PrivateCommands = new List<string>
         {
             // currently there are no commands which need to be hidden in the
@@ -45,6 +56,25 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Web.
 
             bool deviceIsEnabled = device.DeviceProperties.GetHubEnabledState();
 
+            //MDS bae 2017.0615
+            var appSettingsReader = new AppSettingsReader();
+            var connectionString = "DefaultEndpointsProtocol=https;AccountName=soulbrainiot;AccountKey=FX7WS8NcwYURUTG9vlz4YKp6KjhBJB6Uq+k7h5YRpSgvTPmcd9ivsQDcfxSLDSy1F0MWf3OgZu1baO5nsDm3mg==;EndpointSuffix=core.windows.net";//(string)appSettingsReader.GetValue("StorageConnectionString", typeof(string));
+            CloudStorageAccount storageaccount = CloudStorageAccount.Parse(connectionString);
+            blobClient = storageaccount.CreateCloudBlobClient();
+            blobContainer = blobClient.GetContainerReference(blobContainerName);
+            await blobContainer.CreateIfNotExistsAsync();
+            await blobContainer.SetPermissionsAsync(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
+            foreach (IListBlobItem blob in blobContainer.ListBlobs())
+            {
+                if (blob.GetType() == typeof(CloudBlockBlob))
+                {
+                    string blobfilename = blob.Uri.Segments.Last();
+                    blobfilename = blobfilename.Remove(blobfilename.Length - 4);
+                    if (blobfilename == device.CommandHistory[device.CommandHistory.Count - 1].MessageId)
+                        flirimageurl = blob.Uri.ToString();
+                }
+            }
+
             DeviceCommandModel deviceCommandsModel = new DeviceCommandModel
             {
                 CommandHistory = device.CommandHistory.Where(c => c.DeliveryType == DeliveryType.Message).ToList(),
@@ -54,8 +84,9 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Web.
                     DeviceId = device.DeviceProperties.DeviceID,
                     CommandSelectList = commandListItems,
                     CanSendDeviceCommands = deviceIsEnabled && PermsChecker.HasPermission(Permission.SendCommandToDevices)
-                },
-                DeviceId = device.DeviceProperties.DeviceID
+                },                
+                ImageUrl = flirimageurl,    //MDS bae 2017.0615
+                DeviceId = device.DeviceProperties.DeviceID,
             };
 
             return View(deviceCommandsModel);
