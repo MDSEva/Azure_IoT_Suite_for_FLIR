@@ -1113,6 +1113,16 @@ nav .selected {
   border: 10px solid #fff;
   margin-bottom: 15px;
 }
+.flir_image{  /*MDS bae 2017.0615*/
+  float: left;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  border: 10px solid #fff;
+  margin-bottom: 15px;
+}
 .dashboard_alert_history {
   width: 100%;
   background-color: #fff;
