@@ -42,7 +42,7 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Web.
             _deviceLogic = deviceLogic;
             _commandParameterTypeLogic = commandParameterTypeLogic;
         }
-
+        
         [RequirePermission(Permission.ViewDevices)]
         public async Task<ActionResult> Index(string deviceId)
         {
@@ -58,19 +58,20 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Web.
 
             //MDS bae 2017.0615
             var appSettingsReader = new AppSettingsReader();
-            var connectionString = "DefaultEndpointsProtocol=https;AccountName=soulbrainiot;AccountKey=FX7WS8NcwYURUTG9vlz4YKp6KjhBJB6Uq+k7h5YRpSgvTPmcd9ivsQDcfxSLDSy1F0MWf3OgZu1baO5nsDm3mg==;EndpointSuffix=core.windows.net";//(string)appSettingsReader.GetValue("StorageConnectionString", typeof(string));
+            var connectionString = "DefaultEndpointsProtocol=https;AccountName=soulbrainiot;AccountKey=FX7WS8NcwYURUTG9vlz4YKp6KjhBJB6Uq+k7h5YRpSgvTPmcd9ivsQDcfxSLDSy1F0MWf3OgZu1baO5nsDm3mg==;EndpointSuffix=core.windows.net";
             CloudStorageAccount storageaccount = CloudStorageAccount.Parse(connectionString);
             blobClient = storageaccount.CreateCloudBlobClient();
-            blobContainer = blobClient.GetContainerReference(blobContainerName);
+            blobContainer = blobClient.GetContainerReference(blobContainerName);            
             await blobContainer.CreateIfNotExistsAsync();
             await blobContainer.SetPermissionsAsync(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
-            foreach (IListBlobItem blob in blobContainer.ListBlobs())
+            CloudBlobDirectory blobDirectory = blobContainer.GetDirectoryReference(deviceId);
+            foreach (IListBlobItem blob in blobDirectory.ListBlobs())
             {
                 if (blob.GetType() == typeof(CloudBlockBlob))
                 {
-                    string blobfilename = blob.Uri.Segments.Last();
-                    blobfilename = blobfilename.Remove(blobfilename.Length - 4);
-                    if (blobfilename == device.CommandHistory[device.CommandHistory.Count - 1].MessageId)
+                    //string blobfilename = blob.Uri.Segments.Last();
+                    //blobfilename = blobfilename.Remove(blobfilename.Length - 4);
+                    //if (blobfilename == device.CommandHistory[device.CommandHistory.Count - 1].MessageId)
                         flirimageurl = blob.Uri.ToString();
                 }
             }

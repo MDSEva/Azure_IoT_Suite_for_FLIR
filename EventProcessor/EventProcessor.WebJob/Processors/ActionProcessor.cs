@@ -11,10 +11,24 @@ using Microsoft.ServiceBus.Messaging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+//MDS bae 2017.0626
+using Microsoft.WindowsAzure.Storage.Blob;
+using System.Linq;
+using System.Configuration;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Web.Controllers;
+
 namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.EventProcessor.WebJob.Processors
 {
     public class ActionProcessor : IEventProcessor
     {
+        //MDS bae 2017.0626
+        public static CloudBlobClient blobClient;
+        public const string blobContainerName = "flirimage";
+        public static CloudBlobContainer blobContainer;
+        public string flirimageurl;
+        public static ServiceClient iotHubServiceClient { get; private set; }
+
         private readonly IActionLogic _actionLogic;
         private readonly IActionMappingLogic _actionMappingLogic;
         private readonly IConfigurationProvider _configurationProvider;
@@ -68,7 +82,6 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.EventProcessor.W
         public async Task ProcessEventsAsync(PartitionContext context, IEnumerable<EventData> messages)
         {
             Trace.TraceInformation("ActionProcessor: In ProcessEventsAsync");
-
             foreach (EventData message in messages)
             {
                 try
@@ -81,7 +94,7 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.EventProcessor.W
                     if (results != null)
                     {
                         foreach (ActionModel item in results)
-                        {
+                        {                            
                             await ProcessAction(item);
                         }
                     }
@@ -120,7 +133,7 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.EventProcessor.W
                 Trace.TraceWarning("Action event is null");
                 return;
             }
-
+            
             try
             {
                 // NOTE: all column names from ASA come out as lowercase; see 
@@ -131,18 +144,42 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.EventProcessor.W
 
                 if (ruleOutput.Equals("AlarmTemp", StringComparison.OrdinalIgnoreCase))
                 {
+                    //MDS bae 2017.0626
+                    string iotHubConnectionString = "HostName=soulbrainioteecb9.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=bDDNH5LbXP2rnKdS2kKCL+j43jeyFcJQKvVmWbaMpHs=";
+                    iotHubServiceClient = ServiceClient.CreateFromConnectionString(iotHubConnectionString);
+                    string commandParameterNew = "{\"Name\":\"CaptureImage\",\"Parameters\":{}}";
+                    await iotHubServiceClient.SendAsync(deviceId, new Message(Encoding.UTF8.GetBytes(commandParameterNew)));
+
+                    //MDS bae 2017.0626
+                    var appSettingsReader = new AppSettingsReader();
+                    var connectionString = "DefaultEndpointsProtocol=https;AccountName=soulbrainiot;AccountKey=FX7WS8NcwYURUTG9vlz4YKp6KjhBJB6Uq+k7h5YRpSgvTPmcd9ivsQDcfxSLDSy1F0MWf3OgZu1baO5nsDm3mg==;EndpointSuffix=core.windows.net";
+                    CloudStorageAccount storageaccount = CloudStorageAccount.Parse(connectionString);
+                    blobClient = storageaccount.CreateCloudBlobClient();
+                    blobContainer = blobClient.GetContainerReference(blobContainerName);
+                    await blobContainer.CreateIfNotExistsAsync();
+                    await blobContainer.SetPermissionsAsync(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
+                    CloudBlobDirectory blobDirectory = blobContainer.GetDirectoryReference(deviceId);
+                    foreach (IListBlobItem blob in blobDirectory.ListBlobs())
+                    {
+                        if (blob.GetType() == typeof(CloudBlockBlob))
+                        {
+                            flirimageurl = blob.Uri.ToString();
+                        }
+                    }
+
                     Trace.TraceInformation("ProcessAction: temperature rule triggered!");
                     double tempReading = eventData.Reading;
 
                     string tempActionId = await _actionMappingLogic.GetActionIdFromRuleOutputAsync(ruleOutput);
-
+                    
                     if (!string.IsNullOrWhiteSpace(tempActionId))
                     {
                         await _actionLogic.ExecuteLogicAppAsync(
                         tempActionId,
                         deviceId,
+                        flirimageurl, //MDS bae 2017.0626 add imageurl parameter
                         "Temperature",
-                        tempReading);
+                        tempReading);                        
                     }
                     else
                     {
@@ -162,6 +199,7 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.EventProcessor.W
                         await _actionLogic.ExecuteLogicAppAsync(
                             humidityActionId,
                             deviceId,
+                            flirimageurl, //MDS bae 2017.0626 add imageurl parameter
                             "Humidity",
                             humidityReading);
                     }

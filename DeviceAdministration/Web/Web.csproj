@@ -525,6 +525,9 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="Content\styles\elements\forms.less" />
+    <None Include="Properties\PublishProfiles\SNet-ESL - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\soulbrainiot - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\soulbrainiot - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -764,14 +767,17 @@
     <EmbeddedResource Include="App_GlobalResources\Strings.cs.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Strings.cs.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Strings.de.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Strings.de.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Strings.es.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Strings.es.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Strings.fr.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
@@ -792,14 +798,17 @@
     <EmbeddedResource Include="App_GlobalResources\Strings.ko.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Strings.ko.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Strings.nl.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Strings.nl.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Strings.pl.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Strings.pl.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Strings.pt-BR.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
@@ -808,6 +817,7 @@
     <EmbeddedResource Include="App_GlobalResources\Strings.pt-PT.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Strings.pt-PT.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -818,14 +828,17 @@
     <EmbeddedResource Include="App_GlobalResources\Strings.ru.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Strings.ru.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Strings.sv.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Strings.sv.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Strings.tr.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Strings.tr.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Strings.zh-HANS.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>

@@ -21,8 +21,9 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Infr
         // Currently this dictionary is not editable in the app
         private Dictionary<string,string> actionIds = new Dictionary<string, string>()
          {
-            { "Send Message", "" },
-            { "Raise Alarm", "" }
+            //MDS bae 2017.0627 Add Logic App
+            { "Send Message", "https://prod-19.japanwest.logic.azure.com:443/workflows/7cbfae292a5c49cfa77e9b9118b4054b/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=kqGxurDuStngobILLEejjYyYJ0lscSxTw3y5RMPS7RI" },
+            { "Raise Alarm", "https://prod-19.japanwest.logic.azure.com:443/workflows/7cbfae292a5c49cfa77e9b9118b4054b/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=kqGxurDuStngobILLEejjYyYJ0lscSxTw3y5RMPS7RI" }
       };
 
         public async Task<bool> AddActionEndpoint(string actionId, string endpoint)
@@ -46,7 +47,8 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Infr
             return await Task.Run(() => { return new List<string>(actionIds.Keys); });
         }
 
-        public async Task<bool> ExecuteLogicAppAsync(string actionId, string deviceId, string measurementName, double measuredValue)
+        //MDS bae 2017.0626 add imageurl parameter
+        public async Task<bool> ExecuteLogicAppAsync(string actionId, string deviceId, string captureimage, string measurementName, double measuredValue)
         {
             if(actionIds.ContainsKey(actionId) && !string.IsNullOrEmpty(actionIds[actionId]))
             {
@@ -59,6 +61,7 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Infr
                                 new
                                 {
                                     deviceId = deviceId,
+                                    captureimage = captureimage, //MDS bae 2017.0626 add imageurl parameter
                                     measurementName = measurementName,
                                     measuredValue = measuredValue
                                 }),

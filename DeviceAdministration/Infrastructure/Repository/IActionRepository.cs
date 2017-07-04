@@ -12,6 +12,7 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Infr
 
         Task<List<string>> GetAllActionIdsAsync();
 
-        Task<bool> ExecuteLogicAppAsync(string actionId, string deviceId, string measurementName, double measuredValue);
+        //MDS bae 2017.0626
+        Task<bool> ExecuteLogicAppAsync(string actionId, string deviceId, string captureimage, string measurementName, double measuredValue);
     }
 }
