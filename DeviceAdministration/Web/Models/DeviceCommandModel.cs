@@ -19,6 +19,8 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Web.
 
         public string CommandsJson { get; set; }
 
+        public string ImageUrl { get; set; } //MDS bae 2017.0615
+
         public bool SupportDeviceCommand
         {
             get

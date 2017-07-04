@@ -51,24 +51,25 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Web.
                     Class = "navigation__link--actions",
                     MinimumPermission = Permission.ViewActions,
                 },
-                new NavigationMenuItem
-                {
-                    Text = Strings.NavigationMenuItemJobs,
-                    Action = "Index",
-                    Controller = "Job",
-                    Selected = false,
-                    Class = "navigation__link--jobs",
-                    MinimumPermission = Permission.ViewJobs,
-                },
-                new NavigationMenuItem
-                {
-                    Text = Strings.NavigationMenuItemsAdvanced,
-                    Action = "CellularConn",
-                    Controller = "Advanced",
-                    Selected = false,
-                    Class = "nav_advanced",
-                    MinimumPermission = Permission.CellularConn,
-                },
+                //MDS bae 2017.0628 Remove Management Job, Advanced menu
+                //new NavigationMenuItem
+                //{
+                //    Text = Strings.NavigationMenuItemJobs,
+                //    Action = "Index",
+                //    Controller = "Job",
+                //    Selected = false,
+                //    Class = "navigation__link--jobs",
+                //    MinimumPermission = Permission.ViewJobs,
+                //},
+                //new NavigationMenuItem
+                //{
+                //    Text = Strings.NavigationMenuItemsAdvanced,
+                //    Action = "CellularConn",
+                //    Controller = "Advanced",
+                //    Selected = false,
+                //    Class = "nav_advanced",
+                //    MinimumPermission = Permission.CellularConn,
+                //},
             };
         }
 
