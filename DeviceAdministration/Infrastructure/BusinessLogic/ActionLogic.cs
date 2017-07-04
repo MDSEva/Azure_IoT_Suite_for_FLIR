@@ -19,7 +19,8 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Infr
             return await _actionRepository.GetAllActionIdsAsync();
         }
 
-        public async Task<bool> ExecuteLogicAppAsync(string actionId, string deviceId, string measurementName, double measuredValue)
+        //MDS bae 2017.0626 add imageurl parameter
+        public async Task<bool> ExecuteLogicAppAsync(string actionId, string deviceId, string captureimage, string measurementName, double measuredValue)
         {
             if (string.IsNullOrWhiteSpace(actionId))
             {
@@ -38,7 +39,8 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Infr
                 throw new ArgumentException("actionId must be a valid ActionId value");
             }
 
-            return await _actionRepository.ExecuteLogicAppAsync(actionId, deviceId, measurementName, measuredValue);
+            //MDS bae 2017.0626 add imageurl parameter
+            return await _actionRepository.ExecuteLogicAppAsync(actionId, deviceId, captureimage, measurementName, measuredValue);
         }
     }
 }
