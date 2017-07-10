@@ -1240,7 +1240,7 @@
     <value>Wszystkie urządzenia</value>
     <comment>(Unused)</comment>
   </data>
-  <data name="AverageOfDeviceHumidity" xml:space="preserve">
+  <data name="AverageOfDeviceTemperature" xml:space="preserve">
     <value>Średnia wilgotność urządzenia</value>
     <comment>Tile heading.</comment>
   </data>
@@ -1248,11 +1248,11 @@
     <value>Wilgotność</value>
     <comment>Label.</comment>
   </data>
-  <data name="MaxOfDevicesHumidity" xml:space="preserve">
+  <data name="MaxOfDevicesTemperature" xml:space="preserve">
     <value>Maksymalna wilgotność urządzenia</value>
     <comment>Read-only field label.</comment>
   </data>
-  <data name="MinOfDevicesHumidity" xml:space="preserve">
+  <data name="MinOfDevicesTemperature" xml:space="preserve">
     <value>Minimalna wilgotność urządzenia</value>
     <comment>Read-only field label.</comment>
   </data>

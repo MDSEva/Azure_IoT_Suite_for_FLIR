@@ -3,22 +3,22 @@
     function initTelemetryHistorySummary() {
         'use strict';
 
-        var averageDeviceHumidityContainer;
-        var averageDeviceHumidityControl;
-        var averageDeviceHumidityLabel;
-        var averageHumidityVisual;
-        var lastAvgHumidity;
-        var lastMaxHumidity;
-        var lastMinHumidity;
-        var maxDeviceHumidityContainer;
-        var maxDeviceHumidityControl;
-        var maxDeviceHumidityLabel;
-        var maxHumidityVisual;
+        var averageDeviceTemperatureContainer;
+        var averageDeviceTemperatureControl;
+        var averageDeviceTemperatureLabel;
+        var averageTemperatureVisual;
+        var lastAvgTemperature;
+        var lastMaxTemperature;
+        var lastMinTemperature;
+        var maxDeviceTemperatureContainer;
+        var maxDeviceTemperatureControl;
+        var maxDeviceTemperatureLabel;
+        var maxTemperatureVisual;
         var maxValue;
-        var minDeviceHumidityContainer;
-        var minDeviceHumidityControl;
-        var minDeviceHumidityLabel;
-        var minHumidityVisual;
+        var minDeviceTemperatureContainer;
+        var minDeviceTemperatureControl;
+        var minDeviceTemperatureLabel;
+        var minTemperatureVisual;
         var minValue;
 
         var createDataView = function createDataView(indicatedValue) {
@@ -135,33 +135,33 @@
             maxValue = telemetryHistorySummarySettings.gaugeMaxValue;
             minValue = telemetryHistorySummarySettings.gaugeMinValue;
 
-            averageDeviceHumidityContainer = telemetryHistorySummarySettings.averageDeviceHumidityContainer;
-            averageDeviceHumidityControl = telemetryHistorySummarySettings.averageDeviceHumidityControl;
-            averageDeviceHumidityLabel = telemetryHistorySummarySettings.averageDeviceHumidityLabel;
-            maxDeviceHumidityContainer = telemetryHistorySummarySettings.maxDeviceHumidityContainer;
-            maxDeviceHumidityControl = telemetryHistorySummarySettings.maxDeviceHumidityControl;
-            maxDeviceHumidityLabel = telemetryHistorySummarySettings.maxDeviceHumidityLabel;
-            minDeviceHumidityContainer = telemetryHistorySummarySettings.minDeviceHumidityContainer;
-            minDeviceHumidityControl = telemetryHistorySummarySettings.minDeviceHumidityControl;
-            minDeviceHumidityLabel = telemetryHistorySummarySettings.minDeviceHumidityLabel;
+            averageDeviceTemperatureContainer = telemetryHistorySummarySettings.averageDeviceTemperatureContainer;
+            averageDeviceTemperatureControl = telemetryHistorySummarySettings.averageDeviceTemperatureControl;
+            averageDeviceTemperatureLabel = telemetryHistorySummarySettings.averageDeviceTemperatureLabel;
+            maxDeviceTemperatureContainer = telemetryHistorySummarySettings.maxDeviceTemperatureContainer;
+            maxDeviceTemperatureControl = telemetryHistorySummarySettings.maxDeviceTemperatureControl;
+            maxDeviceTemperatureLabel = telemetryHistorySummarySettings.maxDeviceTemperatureLabel;
+            minDeviceTemperatureContainer = telemetryHistorySummarySettings.minDeviceTemperatureContainer;
+            minDeviceTemperatureControl = telemetryHistorySummarySettings.minDeviceTemperatureControl;
+            minDeviceTemperatureLabel = telemetryHistorySummarySettings.minDeviceTemperatureLabel;
 
-            averageHumidityVisual = createVisual(averageDeviceHumidityControl);
-            maxHumidityVisual = createVisual(maxDeviceHumidityControl);
-            minHumidityVisual = createVisual(minDeviceHumidityControl);
+            averageTemperatureVisual = createVisual(averageDeviceTemperatureControl);
+            maxTemperatureVisual = createVisual(maxDeviceTemperatureControl);
+            minTemperatureVisual = createVisual(minDeviceTemperatureControl);
         };
 
         var redraw = function redraw() {
             var height;
             var width;
 
-            if (minDeviceHumidityControl &&
-                minHumidityVisual &&
-                (lastMinHumidity || (lastMinHumidity === 0))) {
-                height = minDeviceHumidityControl.height();
-                width = minDeviceHumidityControl.width();
+            if (minDeviceTemperatureControl &&
+                minTemperatureVisual &&
+                (lastMinTemperature || (lastMinTemperature === 0))) {
+                height = minDeviceTemperatureControl.height();
+                width = minDeviceTemperatureControl.width();
 
-                minHumidityVisual.update({
-                    dataViews: [createDataView(lastMinHumidity)],
+                minTemperatureVisual.update({
+                    dataViews: [createDataView(lastMinTemperature)],
                     viewport: {
                         height: height,
                         width: width
@@ -170,14 +170,14 @@
                 });
             }
 
-            if (maxDeviceHumidityControl &&
-                maxHumidityVisual &&
-                (lastMaxHumidity || (lastMaxHumidity === 0))) {
-                height = maxDeviceHumidityControl.height();
-                width = maxDeviceHumidityControl.width();
+            if (maxDeviceTemperatureControl &&
+                maxTemperatureVisual &&
+                (lastMaxTemperature || (lastMaxTemperature === 0))) {
+                height = maxDeviceTemperatureControl.height();
+                width = maxDeviceTemperatureControl.width();
 
-                maxHumidityVisual.update({
-                    dataViews: [createDataView(lastMaxHumidity)],
+                maxTemperatureVisual.update({
+                    dataViews: [createDataView(lastMaxTemperature)],
                     viewport: {
                         height: height,
                         width: width
@@ -186,14 +186,14 @@
                 });
             }
 
-            if (averageDeviceHumidityControl &&
-                averageHumidityVisual &&
-                (lastAvgHumidity || (lastAvgHumidity === 0))) {
-                height = averageDeviceHumidityControl.height();
-                width = averageDeviceHumidityControl.width();
+            if (averageDeviceTemperatureControl &&
+                averageTemperatureVisual &&
+                (lastAvgTemperature || (lastAvgTemperature === 0))) {
+                height = averageDeviceTemperatureControl.height();
+                width = averageDeviceTemperatureControl.width();
 
-                averageHumidityVisual.update({
-                    dataViews: [createDataView(lastAvgHumidity)],
+                averageTemperatureVisual.update({
+                    dataViews: [createDataView(lastAvgTemperature)],
                     viewport: {
                         height: height,
                         width: width
@@ -212,49 +212,49 @@
 
                 padding = 0;
 
-                if (averageDeviceHumidityContainer &&
-                    averageDeviceHumidityLabel &&
-                    averageDeviceHumidityControl) {
+                if (averageDeviceTemperatureContainer &&
+                    averageDeviceTemperatureLabel &&
+                    averageDeviceTemperatureControl) {
 
                     height =
-                        averageDeviceHumidityContainer.height() -
-                        averageDeviceHumidityLabel.height() -
+                        averageDeviceTemperatureContainer.height() -
+                        averageDeviceTemperatureLabel.height() -
                         padding;
 
-                    width = averageDeviceHumidityContainer.width() - padding;
+                    width = averageDeviceTemperatureContainer.width() - padding;
 
-                    averageDeviceHumidityControl.height(height);
-                    averageDeviceHumidityControl.width(width);
+                    averageDeviceTemperatureControl.height(height);
+                    averageDeviceTemperatureControl.width(width);
                 }
 
-                if (maxDeviceHumidityContainer &&
-                    maxDeviceHumidityLabel &&
-                    maxDeviceHumidityControl) {
+                if (maxDeviceTemperatureContainer &&
+                    maxDeviceTemperatureLabel &&
+                    maxDeviceTemperatureControl) {
 
                     height =
-                        maxDeviceHumidityContainer.height() -
-                        maxDeviceHumidityLabel.height() -
+                        maxDeviceTemperatureContainer.height() -
+                        maxDeviceTemperatureLabel.height() -
                         padding;
 
-                    width = maxDeviceHumidityContainer.width() - padding;
+                    width = maxDeviceTemperatureContainer.width() - padding;
 
-                    maxDeviceHumidityControl.height(height);
-                    maxDeviceHumidityControl.width(width);
+                    maxDeviceTemperatureControl.height(height);
+                    maxDeviceTemperatureControl.width(width);
                 }
 
-                if (minDeviceHumidityContainer &&
-                    minDeviceHumidityLabel &&
-                    minDeviceHumidityControl) {
+                if (minDeviceTemperatureContainer &&
+                    minDeviceTemperatureLabel &&
+                    minDeviceTemperatureControl) {
 
                     height =
-                        minDeviceHumidityContainer.height() -
-                        minDeviceHumidityLabel.height() -
+                        minDeviceTemperatureContainer.height() -
+                        minDeviceTemperatureLabel.height() -
                         padding;
 
-                    width = minDeviceHumidityContainer.width() - padding;
+                    width = minDeviceTemperatureContainer.width() - padding;
 
-                    minDeviceHumidityControl.height(height);
-                    minDeviceHumidityControl.width(width);
+                    minDeviceTemperatureControl.height(height);
+                    minDeviceTemperatureControl.width(width);
                 }
 
                 redraw();
@@ -262,13 +262,13 @@
 
         var updateTelemetryHistorySummaryData =
             function updateTelemetryHistorySummaryData(
-                minHumidity,
-                maxHumidity,
-                avgHumidity) {
+                minTemperature,
+                maxTemperature,
+                avgTemperature) {
 
-                lastAvgHumidity = avgHumidity;
-                lastMaxHumidity = maxHumidity;
-                lastMinHumidity = minHumidity;
+                lastAvgTemperature = avgTemperature;
+                lastMaxTemperature = maxTemperature;
+                lastMinTemperature = minTemperature;
 
                 redraw();
         };
