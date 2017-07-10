@@ -1240,7 +1240,7 @@
     <value>所有设备</value>
     <comment>(Unused)</comment>
   </data>
-  <data name="AverageOfDeviceHumidity" xml:space="preserve">
+  <data name="AverageOfDeviceTemperature" xml:space="preserve">
     <value>设备湿度的平均值</value>
     <comment>Tile heading.</comment>
   </data>
@@ -1248,11 +1248,11 @@
     <value>湿度</value>
     <comment>Label.</comment>
   </data>
-  <data name="MaxOfDevicesHumidity" xml:space="preserve">
+  <data name="MaxOfDevicesTemperature" xml:space="preserve">
     <value>设备湿度的最大值</value>
     <comment>Read-only field label.</comment>
   </data>
-  <data name="MinOfDevicesHumidity" xml:space="preserve">
+  <data name="MinOfDevicesTemperature" xml:space="preserve">
     <value>设备湿度的最小值</value>
     <comment>Read-only field label.</comment>
   </data>

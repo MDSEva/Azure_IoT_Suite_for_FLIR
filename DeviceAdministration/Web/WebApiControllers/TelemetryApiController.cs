@@ -334,6 +334,7 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Web.
                     try
                     {
                         deviceId = devInfo.DeviceProperties.DeviceID;
+
                         props = devInfo.DeviceProperties;
                         enabledState = props.HubEnabledState;
                     }

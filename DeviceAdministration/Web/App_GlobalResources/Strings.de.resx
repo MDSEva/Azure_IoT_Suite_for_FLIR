@@ -1242,7 +1242,7 @@
     <value>Alle Geräte</value>
     <comment>(Unused)</comment>
   </data>
-  <data name="AverageOfDeviceHumidity" xml:space="preserve">
+  <data name="AverageOfDeviceTemperature" xml:space="preserve">
     <value>Durchschnittliche Luftfeuchtigkeit für Gerät</value>
     <comment>Tile heading.</comment>
   </data>
@@ -1250,11 +1250,11 @@
     <value>Luftfeuchtigkeit</value>
     <comment>Label.</comment>
   </data>
-  <data name="MaxOfDevicesHumidity" xml:space="preserve">
+  <data name="MaxOfDevicesTemperature" xml:space="preserve">
     <value>Max. Luftfeuchtigkeit für Gerät</value>
     <comment>Read-only field label.</comment>
   </data>
-  <data name="MinOfDevicesHumidity" xml:space="preserve">
+  <data name="MinOfDevicesTemperature" xml:space="preserve">
     <value>Min. Luftfeuchtigkeit für Gerät</value>
     <comment>Read-only field label.</comment>
   </data>

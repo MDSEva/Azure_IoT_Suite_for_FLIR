@@ -1240,20 +1240,20 @@
     <value>모든 장치</value>
     <comment>(Unused)</comment>
   </data>
-  <data name="AverageOfDeviceHumidity" xml:space="preserve">
-    <value>평균 장치 습도</value>
+  <data name="AverageOfDeviceTemperature" xml:space="preserve">
+    <value>평균 장치 온도</value>
     <comment>Tile heading.</comment>
   </data>
   <data name="Humidity" xml:space="preserve">
     <value>습도</value>
     <comment>Label.</comment>
   </data>
-  <data name="MaxOfDevicesHumidity" xml:space="preserve">
-    <value>최대 장치 습도</value>
+  <data name="MaxOfDevicesTemperature" xml:space="preserve">
+    <value>최대 장치 온도</value>
     <comment>Read-only field label.</comment>
   </data>
-  <data name="MinOfDevicesHumidity" xml:space="preserve">
-    <value>최소 장치 습도</value>
+  <data name="MinOfDevicesTemperature" xml:space="preserve">
+    <value>최소 장치 온도</value>
     <comment>Read-only field label.</comment>
   </data>
   <data name="TelemetryGaugeNumericFormat" xml:space="preserve">

@@ -15,6 +15,14 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Infr
             get;
             set;
         }
+        /// <summary>
+        /// Gets or sets the covered period's average humidity.
+        /// </summary>
+        public double? AverageTemperature
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// Gets or sets the ID of the Device, covered by the summarized 
@@ -43,7 +51,20 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Infr
             get;
             set;
         }
+        public double? MaximumTemperature
+        {
+            get;
+            set;
+        }
 
+        /// <summary>
+        /// Gets or sets the covered period's minimum humidity.
+        /// </summary>
+        public double? MinimumTemperature
+        {
+            get;
+            set;
+        }
         /// <summary>
         /// Gets or sets the number of minutes the represented period covers.
         /// </summary>

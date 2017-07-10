@@ -1240,7 +1240,7 @@
     <value>Todos os Dispositivos</value>
     <comment>(Unused)</comment>
   </data>
-  <data name="AverageOfDeviceHumidity" xml:space="preserve">
+  <data name="AverageOfDeviceTemperature" xml:space="preserve">
     <value>Umidade média do dispositivo</value>
     <comment>Tile heading.</comment>
   </data>
@@ -1248,11 +1248,11 @@
     <value>Umidade</value>
     <comment>Label.</comment>
   </data>
-  <data name="MaxOfDevicesHumidity" xml:space="preserve">
+  <data name="MaxOfDevicesTemperature" xml:space="preserve">
     <value>Umidade máxima do dispositivo</value>
     <comment>Read-only field label.</comment>
   </data>
-  <data name="MinOfDevicesHumidity" xml:space="preserve">
+  <data name="MinOfDevicesTemperature" xml:space="preserve">
     <value>Umidade mínima do dispositivo</value>
     <comment>Read-only field label.</comment>
   </data>

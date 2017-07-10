@@ -530,11 +530,11 @@ namespace GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Average of device humidity.
+        ///   Looks up a localized string similar to Average of device Temperature.
         /// </summary>
-        public static string AverageOfDeviceHumidity {
+        public static string AverageOfDeviceTemperature {
             get {
-                return ResourceManager.GetString("AverageOfDeviceHumidity", resourceCulture);
+                return ResourceManager.GetString("AverageOfDeviceTemperature", resourceCulture);
             }
         }
         
@@ -566,7 +566,7 @@ namespace GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You&apos;ll find this API key in your API Providers system..
+        ///   Looks up a localized string similar to This is the endpoint of the API Provider.
         /// </summary>
         public static string BaseUrlToolTip {
             get {
@@ -1412,7 +1412,7 @@ namespace GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Associate your Azure IoT devices deployed on &lt;a href=&quot;http://www.jasper.com/iot-service-platform/control-center&quot;&gt;Control Center&lt;/a&gt; to this solution..
+        ///   Looks up a localized string similar to Associate your SIMs to Azure IoT devices.
         /// </summary>
         public static string DeviceAssociationDescription {
             get {
@@ -3428,11 +3428,11 @@ namespace GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max of device humidity.
+        ///   Looks up a localized string similar to Max of device Temperature.
         /// </summary>
-        public static string MaxOfDevicesHumidity {
+        public static string MaxOfDevicesTemperature {
             get {
-                return ResourceManager.GetString("MaxOfDevicesHumidity", resourceCulture);
+                return ResourceManager.GetString("MaxOfDevicesTemperature", resourceCulture);
             }
         }
         
@@ -3518,11 +3518,11 @@ namespace GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Min of device humidity.
+        ///   Looks up a localized string similar to Min of device Temperature.
         /// </summary>
-        public static string MinOfDevicesHumidity {
+        public static string MinOfDevicesTemperature {
             get {
-                return ResourceManager.GetString("MinOfDevicesHumidity", resourceCulture);
+                return ResourceManager.GetString("MinOfDevicesTemperature", resourceCulture);
             }
         }
         
@@ -3572,15 +3572,6 @@ namespace GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MSISDN.
-        /// </summary>
-        public static string MSISDN {
-            get {
-                return ResourceManager.GetString("MSISDN", resourceCulture);
-            }
-        }
-		
-        /// <summary>
         ///   Looks up a localized string similar to Months.
         /// </summary>
         public static string MonthPlural {
@@ -3613,6 +3604,15 @@ namespace GlobalResources {
         public static string MoveUp {
             get {
                 return ResourceManager.GetString("MoveUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MSISDN.
+        /// </summary>
+        public static string MSISDN {
+            get {
+                return ResourceManager.GetString("MSISDN", resourceCulture);
             }
         }
         
@@ -3950,20 +3950,20 @@ namespace GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Operator Code.
-        /// </summary>
-        public static string OperatorCode {
-            get {
-                return ResourceManager.GetString("OperatorCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to OPERATIONS.
         /// </summary>
         public static string OperationsHeader {
             get {
                 return ResourceManager.GetString("OperationsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operator Code.
+        /// </summary>
+        public static string OperatorCode {
+            get {
+                return ResourceManager.GetString("OperatorCode", resourceCulture);
             }
         }
         
@@ -5649,7 +5649,7 @@ namespace GlobalResources {
                 return ResourceManager.GetString("UpdateTwin", resourceCulture);
             }
         }
-		
+        
         /// <summary>
         ///   Looks up a localized string similar to Upload.
         /// </summary>

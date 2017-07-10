@@ -1240,7 +1240,7 @@
     <value>Alla enheter</value>
     <comment>(Unused)</comment>
   </data>
-  <data name="AverageOfDeviceHumidity" xml:space="preserve">
+  <data name="AverageOfDeviceTemperature" xml:space="preserve">
     <value>Genomsnittlig enhetsfuktighet</value>
     <comment>Tile heading.</comment>
   </data>
@@ -1248,11 +1248,11 @@
     <value>Fuktighet</value>
     <comment>Label.</comment>
   </data>
-  <data name="MaxOfDevicesHumidity" xml:space="preserve">
+  <data name="MaxOfDevicesTemperature" xml:space="preserve">
     <value>Max för enhetens fuktighet</value>
     <comment>Read-only field label.</comment>
   </data>
-  <data name="MinOfDevicesHumidity" xml:space="preserve">
+  <data name="MinOfDevicesTemperature" xml:space="preserve">
     <value>Min för enhetens fuktighet</value>
     <comment>Read-only field label.</comment>
   </data>
