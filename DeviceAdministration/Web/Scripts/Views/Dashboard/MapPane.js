@@ -95,6 +95,7 @@
                     new Microsoft.Maps.Location(maxLatitude, minLongitude),
                     new Microsoft.Maps.Location(minLatitude, maxLongitude));
             self.map.setView(mapOptions);
+            self.map.setView({zoom: 19}); //MDS bae 2017.0710 zoom in the map
         }
 
         self.map.entities.clear();
