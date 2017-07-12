@@ -58,7 +58,7 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Web.
 
             //MDS bae 2017.0615
             var appSettingsReader = new AppSettingsReader();
-            var connectionString = "DefaultEndpointsProtocol=https;AccountName=soulbrainiot;AccountKey=FX7WS8NcwYURUTG9vlz4YKp6KjhBJB6Uq+k7h5YRpSgvTPmcd9ivsQDcfxSLDSy1F0MWf3OgZu1baO5nsDm3mg==;EndpointSuffix=core.windows.net";
+            var connectionString = "DefaultEndpointsProtocol=https;AccountName=soulbrainsuite;AccountKey=40ke5Jv9rIwl+FXeJ6XHseP9xTwe6+0Dz6x1WlVwoitCm1nY05UUEwhne4WRcOT6RtFcPf4YWvZisdL9gjsKZA==;EndpointSuffix=core.windows.net";
             CloudStorageAccount storageaccount = CloudStorageAccount.Parse(connectionString);
             blobClient = storageaccount.CreateCloudBlobClient();
             blobContainer = blobClient.GetContainerReference(blobContainerName);            

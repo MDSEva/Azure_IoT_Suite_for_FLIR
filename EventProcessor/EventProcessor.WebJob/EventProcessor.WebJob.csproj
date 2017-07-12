@@ -136,6 +136,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\PublishProfiles\soulbrainiot-jobhost - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\soulbrainsuite-jobhost - Web Deploy.pubxml" />
     <None Include="Properties\webjob-publish-settings.json" />
   </ItemGroup>
   <ItemGroup>
