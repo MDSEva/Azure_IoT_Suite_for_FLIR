@@ -145,14 +145,14 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.EventProcessor.W
                 if (ruleOutput.Equals("AlarmTemp", StringComparison.OrdinalIgnoreCase))
                 {
                     //MDS bae 2017.0626
-                    string iotHubConnectionString = "HostName=soulbrainioteecb9.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=bDDNH5LbXP2rnKdS2kKCL+j43jeyFcJQKvVmWbaMpHs=";
+                    string iotHubConnectionString = "HostName=soulbrainsuite03c80.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=imdKYODaeMsTQVqE3Z/rrHUC4Lne8Azg8I7Grf4fBU8=";
                     iotHubServiceClient = ServiceClient.CreateFromConnectionString(iotHubConnectionString);
                     string commandParameterNew = "{\"Name\":\"CaptureImage\",\"Parameters\":{}}";
                     await iotHubServiceClient.SendAsync(deviceId, new Message(Encoding.UTF8.GetBytes(commandParameterNew)));
 
                     //MDS bae 2017.0626
                     var appSettingsReader = new AppSettingsReader();
-                    var connectionString = "DefaultEndpointsProtocol=https;AccountName=soulbrainiot;AccountKey=FX7WS8NcwYURUTG9vlz4YKp6KjhBJB6Uq+k7h5YRpSgvTPmcd9ivsQDcfxSLDSy1F0MWf3OgZu1baO5nsDm3mg==;EndpointSuffix=core.windows.net";
+                    var connectionString = "DefaultEndpointsProtocol=https;AccountName=soulbrainsuite;AccountKey=40ke5Jv9rIwl+FXeJ6XHseP9xTwe6+0Dz6x1WlVwoitCm1nY05UUEwhne4WRcOT6RtFcPf4YWvZisdL9gjsKZA==;EndpointSuffix=core.windows.net";
                     CloudStorageAccount storageaccount = CloudStorageAccount.Parse(connectionString);
                     blobClient = storageaccount.CreateCloudBlobClient();
                     blobContainer = blobClient.GetContainerReference(blobContainerName);
