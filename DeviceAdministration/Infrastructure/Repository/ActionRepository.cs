@@ -23,7 +23,7 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.DeviceAdmin.Infr
          {
             //MDS bae 2017.0627 Add Logic App
             { "Send Message", "https://prod-12.japanwest.logic.azure.com:443/workflows/d39a0837dc774cf38c1b9775a3e7724e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=G-ieYw5E_qcHuSyJXooDhpybcZJXREObnYLB6kvpy9A" },
-            { "Raise Alarm", "https://prod-12.japanwest.logic.azure.com:443/workflows/d39a0837dc774cf38c1b9775a3e7724e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=G-ieYw5E_qcHuSyJXooDhpybcZJXREObnYLB6kvpy9A" }
+            { "Raise Alarm", "" }
       };
 
         public async Task<bool> AddActionEndpoint(string actionId, string endpoint)
